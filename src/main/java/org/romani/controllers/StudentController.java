@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.romani.entities.Student;
-import org.romani.models.User;
+import org.romani.models.UserInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,21 +36,22 @@ public class StudentController
 
             // commit the transaction
             session.getTransaction().commit();
-
-            LinkedHashMap<Integer , String> studentss = new LinkedHashMap<>();
-
-            for (Student student : students) {
-                studentss.put(student.getId(), student.getFirstName()+" "+ student.getLastName());
+            LinkedHashMap<Integer , String> studentsIDName = new LinkedHashMap();
+            for (Student student:students) {
+                studentsIDName.put(student.getId() , student.getFirstName() + " " + student.getLastName());
             }
 
-            model.addAttribute("studentss" , studentss);
+            model.addAttribute("student" , new Student());
+            model.addAttribute("userInfo" , new UserInfo());
+            model.addAttribute("studentsIDName" , studentsIDName);
 
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
+            session.close();
             sessionFactory.close();
         }
 
-        model.addAttribute("student" , new Student());
-        model.addAttribute("user" , new User());
         return "student-page";
     }
 
@@ -74,16 +75,19 @@ public class StudentController
             model.addAttribute("students" , students);
             session.getTransaction().commit();
 
+            model.addAttribute("message" , "The student "
+                    + student.getFirstName() + " " + student.getLastName()
+                    + " saved successful to MySQL DB with id :" + student.getId());
         } finally {
             sessionFactory.close();
         }
 
-        return "save-student-info";
+        return "update-student-info";
     }
 
 
     @RequestMapping("/selectStudentForm")
-    public String selectStudentForm(@ModelAttribute("student")Student student , @ModelAttribute("user")User user , Model model)
+    public String selectStudentForm(@ModelAttribute("student")Student student , @ModelAttribute("user") UserInfo userInfo, Model model)
     {
         SessionFactory sessionFactory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -105,7 +109,7 @@ public class StudentController
     }
 
     @RequestMapping("/userSelectOptionForm")
-    public String userSelectOptionForm(@ModelAttribute("user")User user) {
+    public String userSelectOptionForm(@ModelAttribute("userInfo") UserInfo userInfo) {
         return "pass-user-info";
     }
 
@@ -169,9 +173,14 @@ public class StudentController
             s.setFirstName(student.getFirstName());
             s.setLastName(student.getLastName());
             s.setEmail(student.getEmail());
-
-            model.addAttribute("s" , s);
             session.getTransaction().commit();
+
+            model.addAttribute("message" , "The student "
+                    + student.getFirstName() + " " + student.getLastName()
+                    + " updated successful to MySQL DB with id :" + student.getId());
+            model.addAttribute("s" , s);
+
+
 
             session = sessionFactory.getCurrentSession();
             session.beginTransaction();
@@ -200,7 +209,7 @@ public class StudentController
             session.beginTransaction();
             session.createQuery("update Student set email = '" + email +"'").executeUpdate();
             session.getTransaction().commit();
-
+            model.addAttribute("message" , "all students emails successful changed with this email:" + email);
             session = sessionFactory.getCurrentSession();
             session.beginTransaction();
             List<Student> students = session.createQuery("from Student ").getResultList();
@@ -230,7 +239,9 @@ public class StudentController
             Student student = session.get(Student.class , studentID);
             session.delete(student);
             session.getTransaction().commit();
-
+            model.addAttribute("message" , "The student "
+                    + student.getFirstName() + " " + student.getLastName()
+                    + " deleted successful from MySQL DB who id is = " + student.getId());
             session = sessionFactory.getCurrentSession();
             session.beginTransaction();
             List<Student> students = session.createQuery("from Student ").getResultList();
@@ -257,7 +268,7 @@ public class StudentController
             session.beginTransaction();
             session.createQuery("delete from Student").executeUpdate();
             session.getTransaction().commit();
-
+            model.addAttribute("message" , "all students has been deleted successfully!.");
             session = sessionFactory.getCurrentSession();
             session.beginTransaction();
             List<Student> students = session.createQuery("from Student ").getResultList();

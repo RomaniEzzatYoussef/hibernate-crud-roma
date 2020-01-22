@@ -2,7 +2,7 @@ package org.romani.models;
 
 import java.util.LinkedHashMap;
 
-public class User {
+public class UserInfo {
 
     private String firstName;
     private String lastName;
@@ -14,7 +14,7 @@ public class User {
     private LinkedHashMap<String, String> favoriteLanguageOptions;
     private LinkedHashMap<String, String> operatingSystemsOptions;
 
-    public User() {
+    public UserInfo() {
         // populate country options: used ISO country code
         countryOptions = new LinkedHashMap<>();
 

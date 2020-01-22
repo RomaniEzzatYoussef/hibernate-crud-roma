@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/resources/css/index.css">
     <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 
-    <title>Index Page</title>
+    <title>Home Page</title>
 </head>
 <body>
 
@@ -47,20 +47,22 @@
                     <a class="nav-link" href="instructor/showInstructorPage" title="instructor"> <i class="fas fa-comment"></i><span class="ttip">Go To Instructor Page With Database @OneToOne Relationship</span></a>
                 </li>
             </ul>
+
             <ul class="navbar-nav ml-md-auto d-md-flex">
                 <li class="nav-item">
-                    <a class="nav-link" href="showSignInPage"><i class="fas fa-key"></i> Login</a>
+                    <p style="color: #ffffff; font-family: 'Lucida Sans';font-size: larger;">Welcome ${u.firstName} ${u.lastName}</p>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-md-auto d-md-flex">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.jsp"><i class="fas fa-key"></i> Logout</a>
                 </li>
             </ul>
         </div>
     </nav>
 
 </div>
-
-<%--<div>--%>
-<%--    <img src="${pageContext.request.contextPath}/resources/images/spring-logo.jpg" /><br><br>--%>
-<%--    <input type="button" onclick="doSomeWork()" value="Click Me"/><br><br>--%>
-<%--</div>--%>
 
 </body>
 </html>
