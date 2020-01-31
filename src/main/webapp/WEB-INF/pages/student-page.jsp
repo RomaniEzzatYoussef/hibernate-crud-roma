@@ -29,21 +29,22 @@
 
             <div class="card-body">
                 <form:form action="userSelectOptionForm" modelAttribute="userInfo">
+
+                    Country: <br> <br>
                     <div class="input-group form-group">
-                        Country:
                         <form:select path="country">
                             <form:options items="${userInfo.countryOptions}"/>
                         </form:select> <br><br>
                     </div>
 
-                    <div class="input-group form-group">
-                        Favorite Language: <br>
-                        <form:radiobuttons path="favoriteLanguage" items="${userInfo.favoriteLanguageOptions}"  /> <br><br>
+                    Favorite Language: <br><br>
+                    <div class="form-check">
+                        <form:radiobuttons path="favoriteLanguage" delimiter="<br>" items="${userInfo.favoriteLanguageOptions}"  />
                     </div>
 
-                    <div class="input-group form-group">
-                        Operating Systems: <br>
-                        <form:checkboxes path="operatingSystems" items="${userInfo.operatingSystemsOptions}"  /> <br><br>
+                    Operating Systems: <br><br>
+                    <div class="form-check">
+                        <form:checkboxes path="operatingSystems" delimiter="<br>" items="${userInfo.operatingSystemsOptions}"  />
                     </div>
 
                     <div class="form-group">
@@ -56,7 +57,7 @@
 </div>
 
 
-
+<br><br><br><br>
 
 
 <div class="container">
@@ -89,7 +90,7 @@
     </div>
 </div>
 
-
+<br><br><br><br>
 
 <div class="container">
     <div class="d-flex justify-content-center h-100">
@@ -116,7 +117,7 @@
     </div>
 </div>
 
-
+<br><br><br><br>
 
 <div class="container">
     <div class="d-flex justify-content-center h-100">
@@ -138,6 +139,8 @@
         </div>
     </div>
 </div>
+
+<br><br><br><br>
 
 <div class="container">
     <div class="d-flex justify-content-center h-100">

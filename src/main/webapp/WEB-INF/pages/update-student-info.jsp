@@ -41,7 +41,7 @@
                         <td>firstName</td>
                         <td>lastName</td>
                         <td>email</td>
-                        <td><a href="${contextPath}/student/deleteAllStudent">Delete All Students</a></td>
+                        <td colspan="2"><a href="${contextPath}/student/deleteAllStudent">Delete All Students</a></td>
                     </tr>
 
                     <c:forEach var="student" items="${students}">

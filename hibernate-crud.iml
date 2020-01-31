@@ -4,11 +4,12 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hb-01-one-to-one-uni.cfg.xml" />
+          <unit-entry name="hb-01-one-to-one-uni.cfg.xml" value="885290ed-267a-4600-95b0-e10e27088943" />
           <unit-entry name="hibernate.cfg.xml" value="d4d9d69d-f495-4698-9ba8-0372d4cd0e43" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hb-01-one-to-one-uni.cfg.xml" />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hb-db.cfg.xml" />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
       </configuration>
     </facet>
@@ -16,7 +17,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
-          <factory-entry name="Entities" value="505d1cb3-b3ce-4057-8111-f8afec6e0551" />
+          <factory-entry name="Entities" value="de7ef021-bed1-415f-83d2-6645afbbf274" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
